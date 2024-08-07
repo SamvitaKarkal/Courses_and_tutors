@@ -1,0 +1,11 @@
+<tr class="bg-gray-50 border-b hover:bg-gray-100">
+  <td class="px-8 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800 cursor-pointer">
+    <%= course.name %>
+  </td>
+  <td class="px-8 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800 cursor-pointer">
+    <%= course.description %>
+  </td>
+  <td class="px-8 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800 cursor-pointer">
+    <%= course.tutors.pluck(:name).join(", ") %>
+  </td>
+</tr>

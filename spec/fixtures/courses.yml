@@ -1,0 +1,7 @@
+one:
+  name: "Computer Science"
+  description: "This is the CS course."
+
+two:
+  name: "Data Science"
+  description: "This is the DS course."
