@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Welcome to Achiever's Academy!
 
-Things you may want to cover:
+In this project, we have 2 models:
+Course & Tutor
 
-* Ruby version
+# rules:
+ - A course can have many tutors.
+ - Tutor can teach one course only.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# API's:
+1. POST /courses - Common POST API to create a course & its tutors
+2. GET /courses - GET API to list all the courses along with their tutors
