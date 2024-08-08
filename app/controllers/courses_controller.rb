@@ -1,10 +1,10 @@
 class CoursesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :index]
-  before_action :set_course, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token, only: %i[create index]
+  before_action :set_course, only: %i[show edit update destroy]
 
   def index
     @courses = Course.includes(:tutors).all
-  
+
     respond_to do |format|
       format.html
       format.json { render :index }
@@ -21,15 +21,16 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
-  def edit
-  end
+  def edit; end
 
   def create
     @course = Course.new(course_params)
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to courses_path, notice: "Course and its tutors were successfully created." }
+        @courses = Course.includes(:tutors).all
+
+        format.html { redirect_to courses_path, notice: 'Course and its tutors were successfully created.' }
         format.json { render :index, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +43,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
+        format.html { redirect_to course_url(@course), notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,19 +57,18 @@ class CoursesController < ApplicationController
     @course.destroy!
 
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:name, :description, tutors_attributes: [:id, :name, :_destroy])
-    end
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  def course_params
+    params.require(:course).permit(:name, :description, tutors_attributes: %i[id name _destroy])
+  end
 end

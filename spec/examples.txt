@@ -1,3 +1,10 @@
 example_id                                           | status | run_time        |
 ---------------------------------------------------- | ------ | --------------- |
-./spec/controllers/courses_controller_spec.rb[1:1:1] | failed | 0.18987 seconds |
+./spec/controllers/courses_controller_spec.rb[1:1:1] | passed | 0.35401 seconds |
+./spec/controllers/courses_controller_spec.rb[1:1:2] | passed | 0.06933 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:1] | passed | 0.00309 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:2] | passed | 0.00436 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:3] | passed | 0.00823 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:4] | passed | 0.01597 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:5] | passed | 0.00413 seconds |
+./spec/controllers/courses_controller_spec.rb[1:2:6] | passed | 0.00405 seconds |

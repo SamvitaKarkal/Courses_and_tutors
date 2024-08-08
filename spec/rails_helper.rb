@@ -10,13 +10,29 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # Configure RSpec
 RSpec.configure do |config|
   # Configure RSpec to use fixtures
+  # config.render_views
+
   config.include FactoryBot::Syntax::Methods
-
-  # Infer spec type from file location
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
-
-  # Filter lines from Rails backtraces
   config.filter_rails_from_backtrace!
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
-  # Additional RSpec configurations can be added here
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

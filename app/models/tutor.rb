@@ -1,5 +1,5 @@
 class Tutor < ApplicationRecord
   belongs_to :course
 
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
 end
